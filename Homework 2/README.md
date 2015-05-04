@@ -1,4 +1,4 @@
-#Homework 1: 浮點數字序列最大可能值
+#Homework 2: 浮點數字序列最大可能值
 
 Problem Description:
 給一浮點數字的序列。插入 +，* 和括號以便獲得最大可能值。
