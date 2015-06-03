@@ -1,38 +1,32 @@
-chars = int(raw_input())
-char_dict = dict()
+while True:
+	try:
+		chars = int(raw_input('How many different characters? '))
+		break
+	except:
+		print 'Integer only!'
+		continue
 
+char_dict = dict()
 for i in range(0, chars):
-	a = raw_input()
-#	t = int(a.find(', '))
-	t = int(a.find(',')) + 1
-	e = len(a)
-#	if t == -1:
-#		t = int(a.find(',')) + 1
-#	else:
-#		t = t + 2
-	word = a[0]
-	frequency = int(a[t:e])
-	char_dict[frequency] = '1'+word
+	while True:
+		try:
+			a = raw_input('Enter [character],[frequency] %d of %d: ' %((i+1),chars))
+			a = a.replace(" ", "")
+			t = int(a.find(',')) + 1
+			e = len(a)
+			word = a[0:t-1]
+			frequency = int(a[t:e])
+			char_dict[frequency] = '1' + word
+			break
+		except:
+			print 'Bad character or frequency, try again!'
 
 t = char_dict.keys()
-#print t
-#t.sort()
-#for key in t:
-#	print key, char_dict[key]
-
-output_dict = dict(char_dict)
-while True:
+while len(t)!=1:
 	t.sort()
-	i = 0
-	j = 1
-	k_d = t[i]+t[j]
-	output_dict[k_d] = '0' + output_dict[t[i]] + output_dict[t[j]]
-	del output_dict[t[i]]
-	del output_dict[t[j]]
+	char_dict[t[0]+t[1]] = '0' + char_dict[t[0]] + char_dict[t[1]]
+	t.append(t[0]+t[1])
 	t.pop(0)
 	t.pop(0)
-	t.append(k_d)
-	if len(output_dict)==1:
-		break
 
-print output_dict[t[0]]
+print 'Result: ' + char_dict[t[0]]
